@@ -354,6 +354,10 @@ var LeanKitClient = function LeanKitClient() {
 		return clientGet("board/" + boardId + "/getcard/" + cardId, callback);
 	};
 
+	var getCardTasks = function getCardTasks(boardId, cardId, callback) {
+		return clientGet("v1/board/" + boardId + "/card/" + cardId + "/tasks", callback);
+	};
+
 	var getCardByExternalId = function getCardByExternalId(boardId, externalCardId, callback) {
 		return clientGet("board/" + boardId + "/getcardbyexternalid/" + encodeURIComponent(externalCardId), callback);
 	};
@@ -509,7 +513,7 @@ var LeanKitClient = function LeanKitClient() {
 	};
 
 	var getCurrentUserProfile = function getCurrentUserProfile() {
-		var boardId = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+		var boardId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
 		return clientGet("api/user/getcurrentusersettings/" + boardId);
 	};
@@ -543,6 +547,7 @@ var LeanKitClient = function LeanKitClient() {
 		getCard: getCard,
 		getCardByExternalId: getCardByExternalId,
 		getCardHistory: getCardHistory,
+		getCardTasks: getCardTasks,
 		getComments: getComments,
 		getCurrentUserProfile: getCurrentUserProfile,
 		getNewBoards: getNewBoards,

@@ -349,6 +349,10 @@ const LeanKitClient = ( ...args ) => {
 		return clientGet( `board/${boardId}/getcard/${cardId}`, callback );
 	};
 
+	const getCardTasks = ( boardId, cardId, callback ) => {
+		return clientGet( `v1/board/${boardId}/card/${cardId}/tasks`, callback );
+	};
+
 	const getCardByExternalId = ( boardId, externalCardId, callback ) => {
 		return clientGet( `board/${boardId}/getcardbyexternalid/${encodeURIComponent( externalCardId )}`, callback );
 	};
@@ -535,6 +539,7 @@ const LeanKitClient = ( ...args ) => {
 		getCard: getCard,
 		getCardByExternalId: getCardByExternalId,
 		getCardHistory: getCardHistory,
+		getCardTasks: getCardTasks,
 		getComments: getComments,
 		getCurrentUserProfile: getCurrentUserProfile,
 		getNewBoards: getNewBoards,

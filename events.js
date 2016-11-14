@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -26,7 +26,7 @@ var LeanKitNotifier = function (_EventEmitter) {
 	function LeanKitNotifier(client, boardId, version, pollInterval) {
 		_classCallCheck(this, LeanKitNotifier);
 
-		var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(LeanKitNotifier).call(this));
+		var _this = _possibleConstructorReturn(this, (LeanKitNotifier.__proto__ || Object.getPrototypeOf(LeanKitNotifier)).call(this));
 
 		_this.timer = 0;
 		_this.client = client;
@@ -75,10 +75,10 @@ var LeanKitNotifier = function (_EventEmitter) {
 					}
 				});
 			} else {
-				_get(Object.getPrototypeOf(LeanKitNotifier.prototype), "emit", this).call(this, "polling", { id: this.boardId, version: this.version });
+				_get(LeanKitNotifier.prototype.__proto__ || Object.getPrototypeOf(LeanKitNotifier.prototype), "emit", this).call(this, "polling", { id: this.boardId, version: this.version });
 				this.client.getBoardUpdates(this.boardId, this.version, function (err, res) {
 					if (err) {
-						_get(Object.getPrototypeOf(LeanKitNotifier.prototype), "emit", _this3).call(_this3, "error", err);
+						_get(LeanKitNotifier.prototype.__proto__ || Object.getPrototypeOf(LeanKitNotifier.prototype), "emit", _this3).call(_this3, "error", err);
 						if (typeof callback === "function") {
 							callback(err);
 						}
@@ -95,7 +95,7 @@ var LeanKitNotifier = function (_EventEmitter) {
 									// console.log( n );
 								}
 								events.push(n);
-								_get(Object.getPrototypeOf(LeanKitNotifier.prototype), "emit", _this3).call(_this3, n.eventType, n);
+								_get(LeanKitNotifier.prototype.__proto__ || Object.getPrototypeOf(LeanKitNotifier.prototype), "emit", _this3).call(_this3, n.eventType, n);
 							});
 
 							if (typeof callback === "function") {
